@@ -1,0 +1,166 @@
+.surya {
+  --sun: #ee5326;
+  --cream: #efe6d6;
+  --night: #191713;
+
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  background: var(--night);
+  color: var(--cream);
+  font-family: var(--font-sans);
+  font-size: clamp(0.55rem, 1.35cqi, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.surya__bar {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3.2cqi 4.5cqi;
+  border-bottom: 1px solid rgb(239 230 214 / 0.14);
+}
+
+.surya__dots {
+  display: flex;
+  gap: 0.9cqi;
+}
+
+.surya__dots i {
+  width: 0.9cqi;
+  height: 0.9cqi;
+  border-radius: 50%;
+  background: rgb(239 230 214 / 0.4);
+}
+
+.surya__sky {
+  position: absolute;
+  inset: 0 0 38%;
+  overflow: hidden;
+}
+
+.surya__orbit {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 40%;
+  aspect-ratio: 1;
+  transform: translate(-50%, 42%);
+  transition: transform 1.6s var(--ease-out);
+}
+
+.surya__sun {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--sun);
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0 38%,
+    transparent 38% 41%,
+    #000 41% 47%,
+    transparent 47% 51%,
+    #000 51% 55%,
+    transparent 55% 60%,
+    #000 60%
+  );
+  transition: background-color 1.6s var(--ease-out);
+}
+
+.surya__ring {
+  position: absolute;
+  inset: -16%;
+  border: 1px solid rgb(239 230 214 / 0.16);
+  border-radius: 50%;
+}
+
+.surya__ring--outer {
+  inset: -38%;
+  border-style: dashed;
+  border-color: rgb(239 230 214 / 0.1);
+}
+
+.surya__horizon {
+  position: absolute;
+  top: 62%;
+  left: 4.5%;
+  right: 4.5%;
+  height: 1px;
+  background: rgb(239 230 214 / 0.55);
+}
+
+.surya__reflection {
+  position: absolute;
+  top: 66%;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.surya__reflection i {
+  height: max(2px, 0.4cqi);
+  background: var(--sun);
+  opacity: 0.85;
+  transition: width 1.6s var(--ease-out);
+}
+
+.surya__reflection i:nth-child(1) { width: 28%; }
+.surya__reflection i:nth-child(2) { width: 18%; }
+.surya__reflection i:nth-child(3) { width: 10%; }
+.surya__reflection i:nth-child(4) { width: 4%; }
+
+.surya__note {
+  position: absolute;
+  top: 64.5%;
+  color: rgb(239 230 214 / 0.55);
+}
+
+.surya__note--left { left: 4.5%; }
+.surya__note--right { right: 4.5%; }
+
+.surya__dock {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  width: 30%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.4cqi;
+  padding: 1.2cqi;
+  border: 1px solid rgb(239 230 214 / 0.18);
+  border-radius: 1.8cqi;
+  transform: translateX(-50%);
+}
+
+.surya__dock i {
+  aspect-ratio: 1;
+  border: 1px solid rgb(239 230 214 / 0.35);
+  border-radius: 28%;
+}
+
+.surya__dock i:nth-child(3) {
+  background: var(--sun);
+  border-color: var(--sun);
+}
+
+/* Hover: the sun rises and warms to daylight */
+.project:hover .surya__orbit {
+  transform: translate(-50%, 12%);
+}
+
+.project:hover .surya__sun {
+  background: #f39a2f;
+}
+
+.project:hover .surya__reflection i:nth-child(1) { width: 36%; }
+.project:hover .surya__reflection i:nth-child(2) { width: 26%; }
+.project:hover .surya__reflection i:nth-child(3) { width: 16%; }
+.project:hover .surya__reflection i:nth-child(4) { width: 8%; }

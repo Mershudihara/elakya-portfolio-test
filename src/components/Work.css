@@ -1,0 +1,208 @@
+/* Section header (shared layout for Work & About) */
+.section-head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 1.5rem;
+  align-items: end;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.section-head .section-label {
+  grid-column: 1 / span 3;
+  align-self: start;
+}
+
+.section-head .section-title {
+  grid-column: 4 / span 6;
+}
+
+.section-head__intro {
+  grid-column: 10 / -1;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  max-width: 28ch;
+}
+
+/* Project list */
+.projects {
+  display: grid;
+  gap: clamp(5rem, 12vw, 10rem);
+  margin-top: clamp(4rem, 9vw, 8rem);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 2rem;
+  align-items: end;
+}
+
+.project__media {
+  grid-column: 1 / span 8;
+  grid-row: 1;
+}
+
+.project__body {
+  grid-column: 9 / -1;
+  grid-row: 1;
+  padding-bottom: 2.6rem;
+}
+
+.project--flipped .project__media {
+  grid-column: 5 / -1;
+}
+
+.project--flipped .project__body {
+  grid-column: 1 / span 4;
+}
+
+.project__frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.project__visual {
+  position: absolute;
+  inset: 0;
+}
+
+.project__caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.9rem;
+  color: var(--ink-faint);
+}
+
+.project__number {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--step-2);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--accent);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+}
+
+.project__title {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 340;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  transition: letter-spacing 0.8s var(--ease-out);
+}
+
+.project:hover .project__title {
+  letter-spacing: -0.02em;
+}
+
+.project__category {
+  margin-top: 1.25rem;
+  color: var(--ink);
+}
+
+.project__description {
+  margin-top: 1.25rem;
+  max-width: 38ch;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.project__meta {
+  margin-top: 2rem;
+  font-size: var(--step--1);
+}
+
+.project__meta > div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 1rem;
+  padding-block: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+
+.project__meta > div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.project__meta dt {
+  align-self: center;
+  color: var(--ink-faint);
+}
+
+/* Subtle scroll-linked settle on the visuals, where supported */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .project__visual {
+      animation: settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1024px) {
+  .section-head .section-label {
+    grid-column: 1 / -1;
+  }
+
+  .section-head .section-title {
+    grid-column: 1 / span 7;
+  }
+
+  .section-head__intro {
+    grid-column: 8 / -1;
+  }
+
+  .project__media,
+  .project--flipped .project__media {
+    grid-column: 1 / -1;
+  }
+
+  .project__body,
+  .project--flipped .project__body {
+    grid-row: 2;
+    grid-column: 1 / span 8;
+    padding-bottom: 0;
+  }
+
+  .project--flipped .project__body {
+    grid-column: 5 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-head .section-title,
+  .section-head__intro {
+    grid-column: 1 / -1;
+  }
+
+  .project__body,
+  .project--flipped .project__body {
+    grid-column: 1 / -1;
+  }
+
+  .project__frame {
+    aspect-ratio: 4 / 4.2;
+  }
+
+  .project__caption > :last-child {
+    text-align: right;
+  }
+}

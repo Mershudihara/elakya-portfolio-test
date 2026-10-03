@@ -1,0 +1,120 @@
+.contact {
+  padding-block: var(--section-space) clamp(4rem, 8vw, 6rem);
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+.contact .label {
+  color: var(--on-dark-soft);
+}
+
+.contact__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-dark);
+}
+
+.contact__title {
+  margin-top: clamp(3rem, 8vw, 6rem);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9.2vw, 9.5rem);
+  font-weight: 300;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  max-width: 14ch;
+}
+
+.contact__title em {
+  color: var(--accent);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 3rem;
+  margin-top: clamp(3.5rem, 8vw, 6rem);
+  align-items: end;
+}
+
+.contact__invite {
+  grid-column: 1 / span 4;
+  color: var(--on-dark-soft);
+  max-width: 34ch;
+}
+
+.contact__links {
+  grid-column: 6 / -1;
+  display: grid;
+}
+
+.contact__links li {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 1.4rem;
+  border-top: 1px solid var(--line-dark);
+}
+
+.contact__links li:last-child {
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.contact__link {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 0.8rem;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 340;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.contact__link .text-link {
+  overflow-wrap: anywhere;
+}
+
+.contact__arrow {
+  flex: none;
+  width: 0.7em;
+  height: 0.7em;
+  color: var(--accent);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.contact__link:hover .contact__arrow,
+.contact__link:focus-visible .contact__arrow {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 1024px) {
+  .contact__invite {
+    grid-column: 1 / span 6;
+  }
+
+  .contact__links {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact__head .contact__status {
+    display: none;
+  }
+
+  .contact__invite {
+    grid-column: 1 / -1;
+  }
+
+  .contact__links li {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}

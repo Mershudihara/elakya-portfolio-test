@@ -1,0 +1,125 @@
+.spatial {
+  --stone: #d3d6cb;
+  --ink: #161513;
+  --cream: #f4efe4;
+
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  background: var(--stone);
+  font-family: var(--font-sans);
+  font-size: clamp(0.55rem, 1.35cqi, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(22 21 19 / 0.6);
+}
+
+.spatial__note {
+  position: absolute;
+}
+
+.spatial__note--tl {
+  top: 4.5cqi;
+  left: 4.5cqi;
+}
+
+.spatial__note--br {
+  right: 4.5cqi;
+  bottom: 4.5cqi;
+}
+
+.spatial__stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  perspective: 160cqi;
+}
+
+.spatial__stack {
+  position: relative;
+  width: 44%;
+  aspect-ratio: 4 / 3;
+  transform-style: preserve-3d;
+  transform: translateY(4%) rotateX(56deg) rotateZ(-38deg);
+}
+
+.spatial__plane {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(22 21 19 / 0.55);
+  transition: transform 1.2s var(--ease-out);
+}
+
+.spatial__plane--shadow {
+  border: 0;
+  background: rgb(22 21 19 / 0.1);
+  transform: translate(5%, 7%);
+}
+
+.spatial__plane--base {
+  background: var(--ink);
+  border-color: var(--ink);
+  transform: translateZ(0);
+}
+
+.spatial__grid {
+  position: absolute;
+  inset: 8%;
+  border: 1px dashed rgb(244 239 228 / 0.25);
+}
+
+.spatial__plane--ui {
+  inset: 6% 10% 10% 6%;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 7%;
+  padding: 7%;
+  background: var(--cream);
+  transform: translateZ(7cqi);
+}
+
+.spatial__ui-bar {
+  height: 1.2cqi;
+  width: 40%;
+  background: var(--ink);
+}
+
+.spatial__ui-line {
+  height: 1px;
+  background: rgb(22 21 19 / 0.4);
+}
+
+.spatial__ui-line--short {
+  width: 64%;
+}
+
+.spatial__ui-dot {
+  align-self: end;
+  justify-self: end;
+  width: 5cqi;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+}
+
+.spatial__plane--focus {
+  inset: 36% 18% 22% 46%;
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateZ(14cqi);
+}
+
+/* Hover: layers separate along the z-axis */
+.project:hover .spatial__plane--ui {
+  transform: translateZ(13cqi);
+}
+
+.project:hover .spatial__plane--focus {
+  transform: translateZ(26cqi);
+}
+
+.project:hover .spatial__plane--shadow {
+  transform: translate(8%, 11%);
+}
