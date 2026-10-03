@@ -13,7 +13,7 @@ export const suryaOS = {
   number: '01',
   title: 'Surya',
   titleAccent: 'OS',
-  subtitle: 'A visual system for a calmer desktop experience.',
+  subtitle: 'A visual system for an expressive, cohesive desktop experience.',
   intro:
     'Surya OS is a desktop operating system concept exploring how a consistent visual language can make an interface feel expressive, approachable and cohesive across the system.',
   meta: [
@@ -22,7 +22,7 @@ export const suryaOS = {
     { label: 'Year', value: '2026' },
     { label: 'Tools', value: 'Figma · Inkscape · Illustrator' },
   ],
-  heroVisual: slot('Hero visual', '16 / 9', { caption: 'Surya OS' }),
+  heroVisual: slot('Surya OS desktop interface', '16 / 9', { caption: 'Surya OS' }),
 
   challenge: {
     title: 'The challenge',
