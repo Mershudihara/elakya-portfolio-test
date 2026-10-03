@@ -1,0 +1,763 @@
+/* Case study pages — built on the homepage tokens and shared utilities. */
+
+.cs-grid,
+.cs-hero__grid,
+.cs-chapter__head,
+.cs-chapter__body,
+.cs-sub__head,
+.cs-state,
+.cs-next__inner {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+}
+
+/* Intro motion */
+.cs-mask {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0 0.06em 0.06em 0;
+  margin-right: -0.06em;
+  vertical-align: bottom;
+}
+
+.cs-rise {
+  display: inline-block;
+  animation: cs-rise 1.2s var(--ease-out) both;
+  animation-delay: calc(0.1s + var(--i, 0) * 0.1s);
+}
+
+.cs-fade {
+  animation: cs-fade 1s var(--ease-out) both;
+  animation-delay: var(--d, 0.2s);
+}
+
+@keyframes cs-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes cs-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* Back link */
+.cs-back {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  color: var(--ink);
+}
+
+.cs-back__arrow {
+  color: var(--accent);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.cs-back:hover .cs-back__arrow,
+.cs-back:focus-visible .cs-back__arrow {
+  transform: translateX(-4px);
+}
+
+/* 1. Hero */
+.cs-hero {
+  padding-top: calc(var(--nav-height) + clamp(1rem, 3vw, 2.5rem));
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.cs-hero__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.cs-hero__label {
+  color: var(--ink);
+}
+
+.cs-hero__index {
+  color: var(--accent);
+}
+
+.cs-hero__title {
+  margin-top: clamp(2rem, 6vw, 5rem);
+  margin-left: -0.05em;
+  font-family: var(--font-display);
+  font-size: clamp(4.75rem, 18vw, 17rem);
+  font-weight: 300;
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+  font-variation-settings: 'opsz' 144;
+}
+
+.cs-hero__title em {
+  font-weight: 280;
+  color: var(--accent);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+}
+
+.cs-hero__grid {
+  row-gap: 1.5rem;
+  align-items: end;
+  margin-top: clamp(2rem, 4.5vw, 4rem);
+}
+
+.cs-hero__subtitle {
+  grid-column: 1 / span 6;
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 320;
+  font-style: italic;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  font-variation-settings: 'SOFT' 100;
+}
+
+.cs-hero__intro {
+  grid-column: 8 / -1;
+  max-width: 44ch;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--gap);
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line);
+}
+
+.cs-meta > div {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+
+.cs-meta dt {
+  color: var(--ink-faint);
+}
+
+.cs-meta dd {
+  font-size: var(--step--1);
+  max-width: 26ch;
+}
+
+/* Media, frames and placeholders */
+.cs-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.cs-frame img,
+.cs-icon img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cs-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.9rem;
+  color: var(--ink-faint);
+}
+
+.cs-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.65rem;
+  padding: 1.5rem;
+  text-align: center;
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 11px,
+    rgb(22 21 19 / 0.045) 11px 12px
+  );
+}
+
+.cs-placeholder__corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0 solid var(--line-strong);
+}
+
+.cs-placeholder__corner--tl {
+  top: 14px;
+  left: 14px;
+  border-width: 1px 0 0 1px;
+}
+
+.cs-placeholder__corner--tr {
+  top: 14px;
+  right: 14px;
+  border-width: 1px 1px 0 0;
+}
+
+.cs-placeholder__corner--bl {
+  bottom: 14px;
+  left: 14px;
+  border-width: 0 0 1px 1px;
+}
+
+.cs-placeholder__corner--br {
+  right: 14px;
+  bottom: 14px;
+  border-width: 0 1px 1px 0;
+}
+
+.cs-placeholder__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+}
+
+.cs-placeholder__tag::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.cs-placeholder__title {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 340;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.cs-placeholder__hint {
+  color: var(--ink-faint);
+}
+
+.cs-placeholder--compact {
+  padding: 0.5rem;
+  background-image: none;
+}
+
+.cs-placeholder--compact .cs-placeholder__title {
+  font-family: var(--font-sans);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Layout grid for figures */
+.cs-grid {
+  row-gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: end;
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.cs-span-4 { grid-column: span 4; }
+.cs-span-5 { grid-column: span 5; }
+.cs-span-6 { grid-column: span 6; }
+.cs-span-7 { grid-column: span 7; }
+.cs-span-12 { grid-column: 1 / -1; }
+
+.cs-hero-visual .cs-media {
+  margin-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+/* Chapters */
+.cs-chapter {
+  padding-top: clamp(6rem, 12vw, 10rem);
+}
+
+.cs-chapter__head {
+  row-gap: 1rem;
+  align-items: start;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.cs-chapter__head .section-label {
+  grid-column: 1 / span 3;
+  color: var(--ink-faint);
+}
+
+.cs-chapter__title {
+  grid-column: 4 / span 9;
+  text-wrap: balance;
+}
+
+.cs-chapter__body {
+  row-gap: 1.5rem;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.cs-chapter__lead {
+  grid-column: 4 / span 4;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 340;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+.cs-chapter__body--lead-only .cs-chapter__lead {
+  grid-column: 4 / span 6;
+}
+
+.cs-chapter__text {
+  grid-column: 9 / -1;
+  display: grid;
+  gap: 1em;
+  max-width: 46ch;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* Sub-sections (wallpapers, iconography) */
+.cs-sub {
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+
+.cs-sub + .cs-sub {
+  margin-top: clamp(5rem, 10vw, 8rem);
+}
+
+.cs-sub__head {
+  row-gap: 1rem;
+  align-items: start;
+}
+
+.cs-sub__index {
+  grid-column: 1 / span 3;
+  padding-top: 0.6rem;
+  color: var(--ink-faint);
+}
+
+.cs-sub__title {
+  grid-column: 4 / span 5;
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 320;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+}
+
+.cs-sub__text {
+  grid-column: 9 / -1;
+  display: grid;
+  gap: 1.5rem;
+  max-width: 46ch;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.cs-points {
+  counter-reset: point;
+  color: var(--ink);
+}
+
+.cs-points li {
+  counter-increment: point;
+  padding-block: 0.65rem;
+  border-top: 1px solid var(--line);
+}
+
+.cs-points li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.cs-points li::before {
+  content: counter(point, decimal-leading-zero);
+  margin-right: 1.25em;
+  color: var(--accent);
+}
+
+/* Icon sheet */
+.cs-icons {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.cs-icon {
+  position: relative;
+  aspect-ratio: 1;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.4s ease;
+}
+
+.cs-icon:hover {
+  background: var(--paper-deep);
+}
+
+.cs-icon img {
+  inset: 28%;
+  width: 44%;
+  height: 44%;
+  object-fit: contain;
+}
+
+/* States */
+.cs-states {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--line);
+}
+
+.cs-state {
+  row-gap: 1.25rem;
+  align-items: start;
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.cs-state__name {
+  grid-column: 1 / span 3;
+  display: grid;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 340;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.cs-state__name .label {
+  font-family: var(--font-sans);
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+}
+
+.cs-state__steps {
+  grid-column: 4 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+.cs-state__step {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.js .cs-state__step {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+  transition-delay: calc(0.2s + var(--i, 0) * 0.12s);
+}
+
+.js .cs-state.is-visible .cs-state__step {
+  opacity: 1;
+  transform: none;
+}
+
+.cs-state__tile {
+  position: relative;
+}
+
+.cs-state__step:not(:last-child) .cs-state__tile::after {
+  content: '→';
+  position: absolute;
+  top: 50%;
+  right: calc(var(--gap) / -2);
+  transform: translate(50%, -50%);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.cs-state__caption {
+  color: var(--ink-faint);
+}
+
+/* Refinement workflow */
+.cs-flow {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 1rem;
+  align-items: baseline;
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  border-block: 1px solid var(--line);
+}
+
+.cs-flow figcaption {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  color: var(--ink-faint);
+}
+
+.cs-flow__tools {
+  grid-column: 4 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25em 0;
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 320;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.cs-flow__tools li + li::before {
+  content: '';
+  display: inline-block;
+  width: clamp(1.5rem, 4vw, 3.5rem);
+  height: 1px;
+  margin-inline: 0.4em;
+  vertical-align: 0.3em;
+  background: var(--accent);
+}
+
+/* Reflection */
+.cs-quote {
+  margin: clamp(3rem, 6vw, 5rem) 0 0;
+  padding-left: calc((100% + var(--gap)) / 4);
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.cs-quote em {
+  color: var(--accent);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+}
+
+.cs-closing {
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  margin-left: calc((100% + var(--gap)) * 8 / 12);
+  max-width: 46ch;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* Next project */
+.cs-next {
+  padding-block: clamp(6rem, 12vw, 10rem) clamp(3rem, 6vw, 5rem);
+}
+
+.cs-next__inner {
+  row-gap: 2rem;
+  align-items: end;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-strong);
+}
+
+.cs-next__label {
+  grid-column: 1 / span 3;
+  align-self: start;
+}
+
+.cs-next__link {
+  grid-column: 4 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 12vw, 11rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+.cs-next__index {
+  align-self: flex-start;
+  margin-right: 0.35em;
+  font-size: max(0.16em, 1.05rem);
+  font-style: italic;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
+.cs-next__title {
+  transition: letter-spacing 0.8s var(--ease-out);
+}
+
+.cs-next__arrow {
+  margin-left: 0.15em;
+  font-family: var(--font-sans);
+  font-size: 0.55em;
+  font-weight: 300;
+  color: var(--accent);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.cs-next__link:hover .cs-next__title,
+.cs-next__link:focus-visible .cs-next__title {
+  letter-spacing: -0.03em;
+}
+
+.cs-next__link:hover .cs-next__arrow,
+.cs-next__link:focus-visible .cs-next__arrow {
+  transform: translateX(0.2em);
+}
+
+.cs-next__back {
+  grid-column: 4 / -1;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .cs-hero__subtitle {
+    grid-column: 1 / span 7;
+  }
+
+  .cs-hero__intro {
+    grid-column: 8 / -1;
+  }
+
+  .cs-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-meta > div:nth-child(n + 3) {
+    margin-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .cs-chapter__head .section-label,
+  .cs-sub__index,
+  .cs-state__name,
+  .cs-next__label,
+  .cs-flow figcaption {
+    grid-column: 1 / -1;
+  }
+
+  .cs-chapter__title,
+  .cs-sub__title,
+  .cs-state__steps,
+  .cs-next__link,
+  .cs-next__back,
+  .cs-flow__tools {
+    grid-column: 1 / -1;
+  }
+
+  .cs-flow figcaption {
+    grid-row: auto;
+  }
+
+  .cs-chapter__lead,
+  .cs-chapter__body--lead-only .cs-chapter__lead {
+    grid-column: 1 / span 6;
+  }
+
+  .cs-chapter__text,
+  .cs-sub__text {
+    grid-column: 7 / -1;
+  }
+
+  .cs-sub__title {
+    margin-bottom: 0.5rem;
+  }
+
+  .cs-quote {
+    padding-left: 0;
+  }
+
+  .cs-closing {
+    margin-left: calc((100% + var(--gap)) / 2);
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .cs-hero__top {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .cs-hero__subtitle,
+  .cs-hero__intro,
+  .cs-chapter__lead,
+  .cs-chapter__body--lead-only .cs-chapter__lead,
+  .cs-chapter__text,
+  .cs-sub__text,
+  .cs-grid > * {
+    grid-column: 1 / -1;
+  }
+
+  .cs-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-meta > div {
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+    padding-block: 0.75rem;
+    margin-top: 0 !important;
+    border-top: 1px solid var(--line);
+  }
+
+  .cs-meta {
+    border-top: 0;
+  }
+
+  .cs-icons {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cs-state__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cs-state__step .cs-state__tile::after {
+    display: none;
+  }
+
+  .cs-closing {
+    margin-left: 0;
+  }
+
+  .cs-placeholder__hint {
+    font-size: 0.62rem;
+  }
+}
+
+/* Visuals settle as they enter, where supported */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cs-frame img {
+      animation: cs-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+  }
+}
+
+@keyframes cs-settle {
+  from {
+    transform: scale(1.06);
+  }
+}

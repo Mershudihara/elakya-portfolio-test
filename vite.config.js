@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
@@ -13,4 +14,13 @@ export default defineConfig({
   plugins: [react()],
   server: network,
   preview: network,
+  build: {
+    rollupOptions: {
+      // One HTML entry per page.
+      input: {
+        main: resolve(import.meta.dirname, 'index.html'),
+        suryaOS: resolve(import.meta.dirname, 'work/surya-os/index.html'),
+      },
+    },
+  },
 })

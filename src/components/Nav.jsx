@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { navLinks, site } from '../content.js'
 import './Nav.css'
 
-export default function Nav({ activeId }) {
+// `base` prefixes the in-page anchors so other pages can link back to the homepage sections.
+export default function Nav({ activeId, base = '' }) {
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
 
@@ -36,7 +37,7 @@ export default function Nav({ activeId }) {
   return (
     <header className={className}>
       <div className="container nav__inner">
-        <a href="#top" className="nav__wordmark">
+        <a href={`${base}#top`} className="nav__wordmark">
           <span>{site.name.split(' ')[0]}</span> <em>{site.name.split(' ')[1]}</em>
           <span className="nav__dot" aria-hidden="true" />
         </a>
@@ -45,7 +46,7 @@ export default function Nav({ activeId }) {
             {navLinks.map((link, i) => (
               <li key={link.id}>
                 <a
-                  href={`#${link.id}`}
+                  href={`${base}#${link.id}`}
                   className="nav__link"
                   aria-current={activeId === link.id ? 'location' : undefined}
                 >
