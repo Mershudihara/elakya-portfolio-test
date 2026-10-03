@@ -163,13 +163,6 @@
   animation: fade-in 1.2s var(--ease-out) 1.1s both;
 }
 
-.hero__def-term {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.15rem;
-  color: var(--ink);
-}
-
 .hero__def-pos {
   font-size: var(--step--2);
   letter-spacing: 0.12em;
@@ -238,10 +231,15 @@
   grid-column: 1 / span 3;
   display: grid;
   gap: 0.4rem;
+  counter-reset: discipline;
+}
+
+.hero__disciplines li {
+  counter-increment: discipline;
 }
 
 .hero__disciplines li::before {
-  content: '—';
+  content: counter(discipline, decimal-leading-zero);
   margin-right: 0.6em;
   color: var(--ink-faint);
 }
@@ -395,9 +393,5 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem 1.25rem;
-  }
-
-  .hero__disciplines li::before {
-    content: none;
   }
 }

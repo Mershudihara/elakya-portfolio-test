@@ -48,9 +48,8 @@ export default function Hero() {
           </h1>
 
           <p className="hero__definition">
-            <span className="hero__def-term">{hero.definition.term}</span>
-            <span className="hero__def-pos">{hero.definition.partOfSpeech}</span>
-            <span className="hero__def-text">{hero.definition.text}</span>
+            <span className="hero__def-pos">{hero.intro.label}</span>
+            <span className="hero__def-text">{hero.intro.text}</span>
           </p>
 
           <span className="hero__spec hero__spec--baseline label" aria-hidden="true">
@@ -59,11 +58,11 @@ export default function Hero() {
         </div>
 
         <div className="hero__footer">
-          <ul className="hero__disciplines label" aria-label="Disciplines">
+          <ol className="hero__disciplines label" aria-label="Capabilities">
             {hero.disciplines.map((item) => (
               <li key={item}>{item}</li>
             ))}
-          </ul>
+          </ol>
           <div className="hero__intro">
             <p className="hero__statement">{hero.statement}</p>
             <a href="#work" className="hero__cta">

@@ -19,13 +19,12 @@ export const navLinks = [
 ]
 
 export const hero = {
-  definition: {
-    term: 'vis·u·al de·sign·er',
-    partOfSpeech: 'noun',
-    text: 'Someone who gives ideas a shape you can feel — through type, colour, rhythm and motion.',
+  intro: {
+    label: 'Visual Designer',
+    text: 'I design thoughtful interfaces, visual systems and product experiences — balancing clarity, character and the details in between.',
   },
   statement:
-    'I design brand-led interfaces and visual systems that are precise in their craft, generous in their details and quietly memorable.',
+    'I work across visual design and UI, turning complex ideas into clear, expressive interfaces — from product systems and components to the tiny details people notice without thinking.',
   disciplines: ['Visual Design', 'UI Design', 'Design Systems', 'Interaction Design'],
 }
 
@@ -70,7 +69,7 @@ export const about = {
   lead: 'I’m Elakya — a visual designer who believes the best interfaces feel inevitable: clear at a glance, rich on a second look.',
   body: [
     'I work at the meeting point of brand and product, translating a point of view into the typography, colour, layout and motion people actually touch every day.',
-    'My process is rigorous but never rigid — I sketch in systems, test in context and sweat the last few pixels so the final work feels effortless.',
+    'My process is rigorous but never rigid — I sketch in systems, test in context and keep refining until the final work feels effortless.',
   ],
   capabilities: [
     {
@@ -79,7 +78,7 @@ export const about = {
     },
     {
       title: 'UI Design',
-      text: 'Crisp, legible interfaces considered down to the pixel — at every breakpoint.',
+      text: 'Clear, legible interfaces with considered hierarchy, spacing and states — at every breakpoint.',
     },
     {
       title: 'Design Systems',
